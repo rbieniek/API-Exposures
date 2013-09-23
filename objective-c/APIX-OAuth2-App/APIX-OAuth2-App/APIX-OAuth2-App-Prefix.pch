@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'APIX-OAuth2-App' target in the 'APIX-OAuth2-App' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
