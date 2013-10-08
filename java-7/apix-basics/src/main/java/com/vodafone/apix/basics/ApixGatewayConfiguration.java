@@ -1,0 +1,4 @@
+package com.vodafone.apix.basics;
+
+public class ApixGatewayConfiguration {
+}

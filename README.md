@@ -7,3 +7,4 @@ This repository hosts sample code for accessing exposed APIs for multiple progra
 
 The supported programming languages are:
 - objective-c
+- Java 7
