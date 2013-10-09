@@ -1,12 +1,15 @@
 /**
  * 
  */
-package com.vodafone.apix.basics;
+package com.vodafone.apix.basics.config;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import com.vodafone.apix.basics.config.ApixGatewayConfiguration;
+import com.vodafone.apix.basics.config.ApixGatewayUriBuilder;
 
 /**
  * @author Rainer.Bieniek@vodafone.com

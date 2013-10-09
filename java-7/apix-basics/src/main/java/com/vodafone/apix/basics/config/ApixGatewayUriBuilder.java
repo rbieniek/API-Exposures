@@ -1,13 +1,16 @@
 /**
  * 
  */
-package com.vodafone.apix.basics;
+package com.vodafone.apix.basics.config;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.vodafone.apix.basics.ApixConstants;
+import com.vodafone.apix.basics.ApixRuntimeException;
 
 /**
  * @author Rainer.Bieniek@vodafone.com

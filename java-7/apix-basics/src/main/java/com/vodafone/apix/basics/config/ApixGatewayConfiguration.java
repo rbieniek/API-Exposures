@@ -1,6 +1,8 @@
-package com.vodafone.apix.basics;
+package com.vodafone.apix.basics.config;
 
 import org.apache.commons.lang3.StringUtils;
+
+import com.vodafone.apix.basics.ApixConstants;
 
 /**
  * 

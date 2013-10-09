@@ -1,9 +1,12 @@
-package com.vodafone.apix.basics;
+package com.vodafone.apix.basics.config;
 
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.vodafone.apix.basics.ApixConstants;
+import com.vodafone.apix.basics.config.ApixGatewayConfiguration;
 
 public class ApixGatewayConfigurationTest {
 	private ApixGatewayConfiguration cfg;
