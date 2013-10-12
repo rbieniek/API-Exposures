@@ -11,5 +11,5 @@ import java.io.OutputStream;
  *
  */
 public interface ITransferSerializer<T> {
-	public void serialize(T obj, OutputStream os) throws IOException;
+	public void serialize(OutputStream os) throws IOException;
 }

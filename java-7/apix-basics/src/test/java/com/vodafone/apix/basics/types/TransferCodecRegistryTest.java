@@ -63,11 +63,11 @@ public class TransferCodecRegistryTest {
 	public void writeSupportedType() throws IOException {
 		Assert.assertTrue(TransferCodecRegistry.instance().canSerialize(Object.class, IJsonTransferType.class));
 		
-		ITransferSerializer<Object> serializer = TransferCodecRegistry.instance().serializerForType(Object.class, 
+		ITransferSerializer<Object> serializer = TransferCodecRegistry.instance().serializerForType(testObject, 
 				IJsonTransferType.class);
 		Assert.assertNotNull(serializer);
 		
-		serializer.serialize(testObject, baos);
+		serializer.serialize(baos);
 		Mockito.verify(writeOnlyCodec).serializeObject(testObject, baos, IJsonTransferType.class);
 	}
 	

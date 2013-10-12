@@ -23,15 +23,17 @@ public class TransferCodecRegistry {
 
 		private ITransferCodec codec;
 		private Class<? extends ITransferType> transferType;
-
-		private TransferSerializerImpl(ITransferCodec codec, Class<? extends ITransferType> transferType) {
+		private T payload;
+		
+		private TransferSerializerImpl(ITransferCodec codec, Class<? extends ITransferType> transferType, T payload) {
 			this.codec = codec;
 			this.transferType = transferType;
+			this.payload = payload;
 		}
 		
 		@Override
-		public void serialize(T obj, OutputStream os) throws IOException {
-			codec.serializeObject(obj, os, transferType);
+		public void serialize(OutputStream os) throws IOException {
+			codec.serializeObject(payload, os, transferType);
 		}
 		
 	}
@@ -97,18 +99,18 @@ public class TransferCodecRegistry {
 		}).isEmpty();
 	}
 	
-	public <T> ITransferSerializer<T> serializerForType(final Class<T> objectType, final Class<? extends ITransferType> transferType) {
+	public <T> ITransferSerializer<T> serializerForType(final T object, final Class<? extends ITransferType> transferType) {
 		ITransferSerializer<T> serializer = null;
 		Iterator<ITransferCodec> serializeCodecs = Collections2.filter(codecs, new Predicate<ITransferCodec>() {
 
 			@Override
 			public boolean apply(ITransferCodec input) {
-				return input.isSerilizationSupported(objectType, transferType);
+				return input.isSerilizationSupported(object.getClass(), transferType);
 			}
 		}).iterator();
 		
 		if(serializeCodecs.hasNext()) {
-			serializer = new TransferSerializerImpl<>(serializeCodecs.next(), transferType);
+			serializer = new TransferSerializerImpl<>(serializeCodecs.next(), transferType, object);
 		}
 		
  		return serializer;
