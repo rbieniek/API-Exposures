@@ -57,10 +57,16 @@ public class TransferCodecRegistry {
 	
 	private List<ITransferCodec> codecs = new LinkedList<>();
 	
+	private static TransferCodecRegistry _instance = new TransferCodecRegistry();
+
+	public static TransferCodecRegistry instance() {
+		return _instance;
+	}
+	
 	/**
 	 * 
 	 */
-	public TransferCodecRegistry() {
+	private TransferCodecRegistry() {
 	}
 
 	public void registerCodec(ITransferCodec codec) {
@@ -91,13 +97,13 @@ public class TransferCodecRegistry {
 		}).isEmpty();
 	}
 	
-	public <T> ITransferSerializer<T> serializerForType(final T obj, final Class<? extends ITransferType> transferType) {
+	public <T> ITransferSerializer<T> serializerForType(final Class<T> objectType, final Class<? extends ITransferType> transferType) {
 		ITransferSerializer<T> serializer = null;
 		Iterator<ITransferCodec> serializeCodecs = Collections2.filter(codecs, new Predicate<ITransferCodec>() {
 
 			@Override
 			public boolean apply(ITransferCodec input) {
-				return input.isSerilizationSupported(obj.getClass(), transferType);
+				return input.isSerilizationSupported(objectType, transferType);
 			}
 		}).iterator();
 		
@@ -108,13 +114,13 @@ public class TransferCodecRegistry {
  		return serializer;
 	}
 	
-	public <T> ITransferDeserializer<T> deserializerForType(final T obj, final Class<? extends ITransferType> transferType) {
+	public <T> ITransferDeserializer<T> deserializerForType(final Class<T> objectType, final Class<? extends ITransferType> transferType) {
 		ITransferDeserializer<T> deserializer = null;
 		Iterator<ITransferCodec> deserializeCodecs = Collections2.filter(codecs, new Predicate<ITransferCodec>() {
 
 			@Override
 			public boolean apply(ITransferCodec input) {
-				return input.isDeserilizationSupported(obj.getClass(), transferType);
+				return input.isDeserilizationSupported(objectType, transferType);
 			}
 		}).iterator();
 		
